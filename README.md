@@ -7,6 +7,7 @@
     - `DB_DATA_PATH=/home/data-mongodb`: place where you are going to save the mondodb data
     - `DB_PORT=27017`: database port
 - Start docker image
+    - `docker network create blogdb`
     - `docker-compose -f docker-compose.local.yml up -d`
 
 ## Backups

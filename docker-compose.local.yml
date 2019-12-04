@@ -1,0 +1,15 @@
+version: "2.4"
+
+services:
+  mongodb:
+    image: mongo:4.0.13
+    networks:
+      - blogdb
+    volumes:
+      - $DB_DATA_PATH:/data/db
+    ports:
+      - "127.0.0.1:$DB_PORT:27017"
+
+networks:
+  blogdb:
+    external: true

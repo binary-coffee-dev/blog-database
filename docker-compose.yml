@@ -5,7 +5,7 @@ services:
     image: mongo:4.0.13
     restart: always
     networks:
-      - blogdbf
+      - blogdb
     volumes:
       - $DB_DATA_PATH:/data/db
     ports:

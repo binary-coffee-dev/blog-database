@@ -1,0 +1,29 @@
+version: "2.4"
+
+services:
+  blog_database:
+    image: mongo:4.0.13
+    restart: always
+    networks:
+      - blogdbf
+    volumes:
+      - $DB_DATA_PATH:/data/db
+    ports:
+      - "127.0.0.1:$DB_PORT:27017"
+
+  backup:
+    image: tutum/mongodb-backup
+    restart: always
+    networks:
+      - blogdb
+    environment:
+      - MONGODB_HOST=blog_database
+      - MONGODB_PORT=$DB_PORT
+      - MAX_BACKUPS=30
+      - INIT_BACKUP=true
+    volumes:
+      - $DB_BACKUP_PATH:/backup
+
+networks:
+  blogdb:
+    external: true

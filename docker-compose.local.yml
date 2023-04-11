@@ -2,11 +2,9 @@ version: '3.3'
 
 services:
   mysql:
-    image: mysql:8.0.32
-    networks:
-      - blogdb
+    image: mysql:5.7.41
+    command: --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_DATABASE: 'blog'
       # So you don't have to use root, but you can if you like
       MYSQL_USER: 'user'
       # You can use whatever password you like
@@ -18,6 +16,7 @@ services:
     volumes:
       - $DB_DATA_PATH:/var/lib/mysql
 
-networks:
-  blogdb:
-    external: true
+  adminer:
+    image: adminer
+    ports:
+      - '4004:8080'

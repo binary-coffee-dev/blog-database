@@ -4,6 +4,8 @@ services:
   mysql:
     image: mysql:5.7.41
     command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - blogdb
     environment:
       # So you don't have to use root, but you can if you like
       MYSQL_USER: 'user'
@@ -20,3 +22,7 @@ services:
     image: adminer
     ports:
       - '4004:8080'
+
+networks:
+  blogdb:
+    external: true
